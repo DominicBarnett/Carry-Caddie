@@ -3,19 +3,96 @@
 
 <h1>New Yardage entry</h1>
 
-<form method="POST" action="{{ url_for('main.yardage_detail')}}">
+<form method="POST" action="{{ url_for('main.new_carryyardages')}}">
     {{ form.hidden_tag() }}
     <fieldset>
         <legend>Please enter your information:</legend>
 
 
 
-        <!-- TODO: Remove the next paragraph and use the `form` object passed in 
-            from the route to render a form. -->
-        {{ form.title.label }}
-        {{ form.title }}
+         <!-- TODO: Remove the next paragraph and use the `form` object passed in 
+            from the route to render a form.  -->
+        {{ form.PWedge.label }}
+        {{ form.PWedge }}
         <ul>
-        {% for error in form.title.errors %}
+        {% for error in form.PWedge.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Nine_Iron.label }}
+        {{ form.Nine_Iron }}
+        <ul>
+        {% for error in form.Nine_Iron.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Eight_Iron.label }}
+        {{ form.Eight_Iron }}
+        <ul>
+        {% for error in form.Eight_Iron.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Seven_Iron.label }}
+        {{ form.Seven_Iron }}
+        <ul>
+        {% for error in form.Seven_Iron.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Six_Iron.label }}
+        {{ form.Six_Iron }}
+        <ul>
+        {% for error in form.Six_Iron.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Five_Iron.label }}
+        {{ form.Five_Iron }}
+        <ul>
+        {% for error in form.Five_Iron.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Four_Iron.label }}
+        {{ form.Four_Iron }}
+        <ul>
+        {% for error in form.Four_Iron.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Three_Iron.label }}
+        {{ form.Three_Iron }}
+        <ul>
+        {% for error in form.Three_Iron.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Hybrid.label }}
+        {{ form.Hybrid }}
+        <ul>
+        {% for error in form.Hybrid.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Five_Wood.label }}
+        {{ form.Five_Wood }}
+        <ul>
+        {% for error in form.Five_Wood.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Three_Wood.label }}
+        {{ form.Three_Wood }}
+        <ul>
+        {% for error in form.Three_Wood.errors %}
+            <li class="error">{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {{ form.Driver.label }}
+        {{ form.Driver }}
+        <ul>
+        {% for error in form.Driver.errors %}
             <li class="error">{{ error }}</li>
         {% endfor %}
         </ul>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<table id="vertical-1">
+    <caption>First Way</caption>
+    <tr>
+        {% for column in sql_data.keys() %}
+        <th>{{ column }}</th>
+        {% endfor %}
+    </tr>
+    <tr>
+        {% for value in sql_data.values() %}
+        <td>{{ value }}</td>
+        {% endfor %}
+    </tr>
+</table>
+
+
+
+{% endblock %}

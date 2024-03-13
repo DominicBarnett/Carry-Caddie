@@ -21,26 +21,22 @@ class ProAverageCategory(FormEnum):
 
 class CarryYardages(db.Model):
     """Affiliation model. What group a given created character is apart of"""
-    id = db.Column(db.Integer, primary_key=True)
-    PWedge = db.Column(db.Integer, primary_key=True)
-    Nine_Iron = db.Column(db.Integer, primary_key=True)
-    Eight_Iron = db.Column(db.Integer, primary_key=True)
-    Seven_Iron = db.Column(db.Integer, primary_key=True)
-    Six_Iron = db.Column(db.Integer, primary_key=True)
-    Five_Iron = db.Column(db.Integer, primary_key=True)
-    Four_Iron = db.Column(db.Integer, primary_key=True)
-    Three_Iron = db.Column(db.Integer, primary_key=True)
-    Hybrid = db.Column(db.Integer, primary_key=True)
-    Five_Wood = db.Column(db.Integer, primary_key=True)
-    Three_Wood = db.Column(db.Integer, primary_key=True)
-    Driver = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    PWedge = db.Column(db.Integer)
+    Nine_Iron = db.Column(db.Integer)
+    Eight_Iron = db.Column(db.Integer)
+    Seven_Iron = db.Column(db.Integer)
+    Six_Iron = db.Column(db.Integer)
+    Five_Iron = db.Column(db.Integer)
+    Four_Iron = db.Column(db.Integer)
+    Three_Iron = db.Column(db.Integer)
+    Hybrid = db.Column(db.Integer)
+    Five_Wood = db.Column(db.Integer)
+    Three_Wood = db.Column(db.Integer)
+    Driver = db.Column(db.Integer)
+    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
 
-    def __str__(self):
-        return self.affiliation_name
-
-    def __repr__(self):
-        return self.affiliation_name
     
 class User(UserMixin, db.Model):
     """User model."""

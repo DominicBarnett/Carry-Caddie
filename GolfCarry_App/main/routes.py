@@ -1,8 +1,8 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from datetime import date, datetime
 from flask_login import login_required, current_user
-from GolfCarry_App.models import Affiliation, Character, User, CharacterWithDevilFruit, CharacterWithHaki
-from GolfCarry_App.main.forms import AffiliationForm, CharactersForm
+from GolfCarry_App.models import User, CarryYardages
+from GolfCarry_App.main.forms import CarryYardageForm
 from GolfCarry_App import db
 
 main = Blueprint("main", __name__)
@@ -13,53 +13,88 @@ main = Blueprint("main", __name__)
 
 @main.route('/')
 def homepage():
-    all_affiliations = Affiliation.query.all()
-    all_haki_characters = Character.query.filter(Character.haki != 'No').all()
-    all_devilfruit_characters = Character.query.filter(Character.devil_fruit != 'No').all()
-    print(current_user)
-    return render_template('home.html', all_affiliations=all_affiliations,
-                            all_haki_characters=all_haki_characters, 
-                            all_devilfruit_characters=all_devilfruit_characters)
+    all_yardages = CarryYardages.query.all()
+    return render_template('home.html', all_yardages=all_yardages)
 
-@main.route('/new_affiliation', methods=['GET', 'POST'])
+@main.route('/new_carryyardages', methods=['GET', 'POST'])
 @login_required
-def new_affiliation():
-    form = AffiliationForm()
+def new_carryyardages():
+    print("**********************")
+    print('New Carry Yardages')
+    print("IIIIIIIIIIIIIIIIIII CURENT USER BELOW IIIIIIIIIIIIIII")
+    print(current_user)
+    form = CarryYardageForm()
     if form.validate_on_submit():
-        new_affiliation = Affiliation(
-            title=form.title.data,
+        print("_____________________Form AUTO SUBMIT_______________________")
+        new_yardages = CarryYardages(
+            PWedge=form.PWedge.data,
+            Nine_Iron=form.Nine_Iron.data,
+            Eight_Iron=form.Eight_Iron.data,
+            Seven_Iron=form.Seven_Iron.data,
+            Six_Iron=form.Six_Iron.data,
+            Five_Iron=form.Five_Iron.data,
+            Four_Iron=form.Four_Iron.data,
+            Three_Iron=form.Three_Iron.data,
+            Hybrid=form.Hybrid.data,
+            Five_Wood=form.Five_Wood.data,
+            Three_Wood=form.Three_Wood.data,
+            Driver=form.Driver.data,
             created_by_id=current_user.id
         )
-        db.session.add(new_affiliation)
+        db.session.add(new_yardages)
         db.session.commit()
 
-        flash('New affiliation was created successfully.')
-        # Pass the new_affiliation variable to the template context
-        return redirect(url_for('main.affiliation_detail', affiliation_id=new_affiliation.id))
-    return render_template('new_affiliation.html', form=form)
+        flash('New yardages were created successfully.')
+        return redirect(url_for('main.yardage_detail', carryyardages_id=new_yardages.id))
+    print('&&&&&&&&&&&&&&&&&&&&&&&& GOT PAST THE FORM &&&&&&&&&&&&&&&&&&&&')
+    return render_template('new_carryyardages.html', form=form)
 
 
-@main.route('/affiliation/<affiliation_id>', methods=['GET', 'POST'])
+@main.route('/yardages/<carryyardages_id>', methods=['GET', 'POST'])
 @login_required
-def affiliation_detail(affiliation_id):
-    affiliation = Affiliation.query.get(affiliation_id)
-    form = AffiliationForm(obj=affiliation)
+def yardage_detail(carryyardages_id):
+    print("*************")
+    print(carryyardages_id)
+    yardages = CarryYardages.query.get(carryyardages_id)
+    form = CarryYardageForm(obj=yardages)
     
     # Check if new_affiliation is passed in the request args
     new_affiliation = None
     if 'new_affiliation' in request.args:
         new_affiliation_id = request.args.get('new_affiliation')
-        new_affiliation = Affiliation.query.get(new_affiliation_id)
+        new_affiliation = CarryYardages.query.get(new_affiliation_id)
     
     if form.validate_on_submit():
-        affiliation.affiliation_name = form.title.data
+        yardages.PWedge = form.PWedge.data,
+        yardages.Nine_Iron=form.Nine_Iron.data,
+        yardages.Eight_Iron=form.Eight_Iron.data,
+        yardages.Seven_Iron=form.Seven_Iron.data,
+        yardages.Six_Iron=form.Six_Iron.data,
+        yardages.Five_Iron=form.Five_Iron.data,
+        yardages.Four_Iron=form.Four_Iron.data,
+        yardages.Three_Iron=form.Three_Iron.data,
+        yardages.Hybrid=form.Hybrid.data,
+        yardages.Five_Wood=form.Five_Wood.data,
+        yardages.Three_Wood=form.Three_Wood.data,
+        yardages.Driver=form.Driver.data
         db.session.commit()
 
         flash('Affiliation was updated successfully.')
-        return redirect(url_for('main.affiliation_detail', affiliation_id=affiliation.id))
+        return redirect(url_for('main.yardage_detail', carryyardages_id=yardages.id))
     
     # Pass new_affiliation to the template context
-    return render_template('affiliation_detail.html', affiliation=affiliation, form=form, new_affiliation=new_affiliation)
+    return render_template('yardage_detail.html', affiliation=yardages, form=form, new_affiliation=new_affiliation)
+
+
+@main.route('/profile')
+# @login_required
+def user_home():
+    username = 'placeholder'
+    user = User.query.filter_by(username=username).one()
+    print(user)
+    user_carry_yardages = CarryYardages.query.filter_by(user)
+    print(user_carry_yardages)
+    return render_template('userhome.html', sql_data=user_carry_yardages)
 
 @main.route('/favorite_characters_list')
 @login_required
