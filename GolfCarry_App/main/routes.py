@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from datetime import date, datetime
 from flask_login import login_required, current_user
-from GolfCarry_App.models import User, CarryYardages
+from GolfCarry_App.models import User, CarryYardages, ProAverageCarryYardages
 from GolfCarry_App.main.forms import CarryYardageForm
 from GolfCarry_App import db
 
@@ -87,17 +87,20 @@ def yardage_detail(carryyardages_id):
 
 
 @main.route('/profile')
-# @login_required
-def user_home():
-    username = 'placeholder'
-    user = User.query.filter_by(username=username).one()
-    print(user)
-    user_carry_yardages = CarryYardages.query.filter_by(user)
-    print(user_carry_yardages)
-    return render_template('userhome.html', sql_data=user_carry_yardages)
-
-@main.route('/favorite_characters_list')
 @login_required
-def favorite_characters_list():
-    user_characters_list = current_user.favorite_characters_list_items
-    return render_template('favorite_characters_list.html', character_list=user_characters_list)
+def user_profile():
+    user_yardages = CarryYardages.query.filter_by(created_by_id=current_user.id).all()
+    pro = ProAverageCarryYardages()
+    return render_template('userhome.html', user_yardages=user_yardages, Pro_yardages=pro)
+
+
+# pro = ProAverageCarryYardages()
+
+# print(pro.Driver)
+
+
+# @main.route('/favorite_characters_list')
+# @login_required
+# def favorite_characters_list():
+#     user_characters_list = current_user.favorite_characters_list_items
+#     return render_template('favorite_characters_list.html', character_list=user_characters_list)

@@ -4,20 +4,23 @@ from flask_login import UserMixin
 from GolfCarry_App import db
 from GolfCarry_App.utils import FormEnum
 
-class ProAverageCategory(FormEnum):
+class ProAverageCarryYardages:
     """Pro Average Carry numbers"""
-    Driver = 275
-    Three_Wood = 243
-    Five_Wood = 230
-    Hybrid = 225
-    Three_Iron = 212
-    Four_Iron = 203
-    Five_Iron = 194
-    Six_Iron = 183
-    Seven_Iron = 172
-    Eight_Iron = 160
-    Nine_Iron = 148
-    PWedge = 136
+    def __iter__(self):
+        return iter([
+            ('Driver', 275),
+            ('Three_Wood', 243),
+            ('Five_Wood', 230),
+            ('Hybrid', 225),
+            ('Three_Iron', 212),
+            ('Four_Iron', 203),
+            ('Five_Iron', 194),
+            ('Six_Iron', 183),
+            ('Seven_Iron', 172),
+            ('Eight_Iron', 160),
+            ('Nine_Iron', 148),
+            ('PWedge', 136)
+        ])
 
 class CarryYardages(db.Model):
     """Affiliation model. What group a given created character is apart of"""
