@@ -8,18 +8,18 @@ class ProAverageCarryYardages:
     """Pro Average Carry numbers"""
     def __iter__(self):
         return iter([
-            ('Driver', 275),
-            ('Three_Wood', 243),
-            ('Five_Wood', 230),
-            ('Hybrid', 225),
-            ('Three_Iron', 212),
-            ('Four_Iron', 203),
-            ('Five_Iron', 194),
-            ('Six_Iron', 183),
-            ('Seven_Iron', 172),
-            ('Eight_Iron', 160),
+            ('PWedge', 136),
             ('Nine_Iron', 148),
-            ('PWedge', 136)
+            ('Eight_Iron', 160),
+            ('Seven_Iron', 172),
+            ('Six_Iron', 183),
+            ('Five_Iron', 194),
+            ('Four_Iron', 203),
+            ('Three_Iron', 212),
+            ('Hybrid', 225),
+            ('Five_Wood', 230),
+            ('Three_Wood', 243),            
+            ('Driver', 275),
         ])
 
 class CarryYardages(db.Model):

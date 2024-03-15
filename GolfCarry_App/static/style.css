@@ -2,13 +2,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #eee;
     font-family: 'Open Sans', sans-serif;
+}
+.background {
+    background-image: url(images/CourseCollage.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 100vh;
 }
 
 #content {
-    width: 70%;
-    background-color: white;
+    width: 80%;
+    background-color: rgb(201, 201, 201);
     padding: 20px;
 }
 
@@ -20,11 +27,15 @@ nav {
 }
 
 nav a {
-    color: navy;
+    color: rgb(0, 0, 0);
+    background-color: rgb(27, 167, 27);
     text-decoration: none;
     border: 1px solid black;
     padding: 1px 5px;
     font-size: 1.2em;
+}
+nav a:hover{
+    background-color: yellow;
 }
 
 fieldset {
@@ -66,4 +77,26 @@ div.item-details {
     text-align: center;
     width: 250px;
     height: 300px;
+}
+
+table {
+    border-collapse: collapse;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+th, td {
+    border: 1px solid black;
+
+}
+#begin-button{
+    color: rgb(0, 0, 0);
+    background-color: rgb(27, 167, 27);
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 1px 5px;
+    font-size: 1.2em;
+}
+#begin-button:hover{
+    background-color: yellow;
 }

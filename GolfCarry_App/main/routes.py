@@ -19,13 +19,13 @@ def homepage():
 @main.route('/new_carryyardages', methods=['GET', 'POST'])
 @login_required
 def new_carryyardages():
-    print("**********************")
-    print('New Carry Yardages')
-    print("IIIIIIIIIIIIIIIIIII CURENT USER BELOW IIIIIIIIIIIIIII")
+    # print("**********************")
+    # print('New Carry Yardages')
+    # print("IIIIIIIIIIIIIIIIIII CURENT USER BELOW IIIIIIIIIIIIIII")
     print(current_user)
     form = CarryYardageForm()
     if form.validate_on_submit():
-        print("_____________________Form AUTO SUBMIT_______________________")
+        # print("_____________________Form AUTO SUBMIT_______________________")
         new_yardages = CarryYardages(
             PWedge=form.PWedge.data,
             Nine_Iron=form.Nine_Iron.data,
@@ -46,14 +46,14 @@ def new_carryyardages():
 
         flash('New yardages were created successfully.')
         return redirect(url_for('main.yardage_detail', carryyardages_id=new_yardages.id))
-    print('&&&&&&&&&&&&&&&&&&&&&&&& GOT PAST THE FORM &&&&&&&&&&&&&&&&&&&&')
+    # print('&&&&&&&&&&&&&&&&&&&&&&&& GOT PAST THE FORM &&&&&&&&&&&&&&&&&&&&')
     return render_template('new_carryyardages.html', form=form)
 
 
 @main.route('/yardages/<carryyardages_id>', methods=['GET', 'POST'])
 @login_required
 def yardage_detail(carryyardages_id):
-    print("*************")
+    # print("*************")
     print(carryyardages_id)
     yardages = CarryYardages.query.get(carryyardages_id)
     form = CarryYardageForm(obj=yardages)

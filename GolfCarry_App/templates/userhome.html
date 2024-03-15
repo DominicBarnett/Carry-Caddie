@@ -62,15 +62,13 @@
             </tr>
         </thead>
         <tbody>
-    {% for club, yardage in Pro_yardages %}         
+       
             <tr>
+    {% for club, yardage in Pro_yardages %}                
             <td class="pro-yardage">{{ yardage }}</td>
+    {% endfor %}            
             </tr>
-    {% else %}
-        <tr>
-        <td colspan="12">No yardages recorded yet.</td>
-        </tr>
-    {% endfor %}
+
   </tbody>
 </table>
 {% endblock %}
