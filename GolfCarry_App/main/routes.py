@@ -1,4 +1,5 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
+import random
 from datetime import date, datetime
 from flask_login import login_required, current_user
 from GolfCarry_App.models import User, CarryYardages, ProAverageCarryYardages
@@ -94,13 +95,11 @@ def user_profile():
     return render_template('userhome.html', user_yardages=user_yardages, Pro_yardages=pro)
 
 
-# pro = ProAverageCarryYardages()
-
-# print(pro.Driver)
-
-
-# @main.route('/favorite_characters_list')
-# @login_required
-# def favorite_characters_list():
-#     user_characters_list = current_user.favorite_characters_list_items
-#     return render_template('favorite_characters_list.html', character_list=user_characters_list)
+@main.route('/compare')
+@login_required
+def compare_users():
+    total_users = User.query.count()
+    random_user_id = random.randint(1, total_users)
+    user_yardages = CarryYardages.query.filter_by(created_by_id=current_user.id).all()
+    random_user = CarryYardages.query.filter_by(created_by_id=User.query.filter_by(id=random_user_id).first().id).all()
+    return render_template('compare.html', user_yardages=user_yardages, Pro_yardages=random_user)

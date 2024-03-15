@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2>My Yardages</h2>
+<table>
+  <thead>
+    <tr>
+      <th class="user-clubs">PWedge</th>
+      <th class="user-clubs">Nine Iron</th>
+      <th class="user-clubs">Eight Iron</th>
+      <th class="user-clubs">Seven Iron</th>
+      <th class="user-clubs">Six Iron</th>
+      <th class="user-clubs">Five Iron</th>
+      <th class="user-clubs">Four Iron</th>
+      <th class="user-clubs">Three Iron</th>
+      <th class="user-clubs">Hybrid</th>
+      <th class="user-clubs">Five Wood</th>
+      <th class="user-clubs">Three Wood</th>
+      <th class="user-clubs">Driver</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for yardage in user_yardages %}
+    <tr>
+      <td class="user-yardages">{{ yardage.PWedge }}</td>
+      <td class="user-yardages">{{ yardage.Nine_Iron }}</td>
+      <td class="user-yardages">{{ yardage.Eight_Iron }}</td>
+      <td class="user-yardages">{{ yardage.Seven_Iron }}</td>
+      <td class="user-yardages">{{ yardage.Six_Iron }}</td>
+      <td class="user-yardages">{{ yardage.Five_Iron }}</td>
+      <td class="user-yardages">{{ yardage.Four_Iron }}</td>
+      <td class="user-yardages">{{ yardage.Three_Iron }}</td>
+      <td class="user-yardages">{{ yardage.Hybrid }}</td>
+      <td class="user-yardages">{{ yardage.Five_Wood }}</td>
+      <td class="user-yardages">{{ yardage.Three_Wood }}</td>
+      <td class="user-yardages">{{ yardage.Driver }}</td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="12">No yardages recorded yet.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<h2>Another Users Yardages</h2>
+<table>
+  <thead>
+            <tr>
+                <th class="pro-clubs">PWedge</th>
+                <th class="pro-clubs">Nine Iron</th>
+                <th class="pro-clubs">Eight Iron</th>
+                <th class="pro-clubs">Seven Iron</th>
+                <th class="pro-clubs">Six Iron</th>
+                <th class="pro-clubs">Five Iron</th>
+                <th class="pro-clubs">Four Iron</th>
+                <th class="pro-clubs">Three Iron</th>
+                <th class="pro-clubs">Hybrid</th>
+                <th class="pro-clubs">Five Wood</th>
+                <th class="pro-clubs">Three Wood</th>
+                <th class="pro-clubs">Driver</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for yardage in Pro_yardages %}
+          <tr>
+            <td class="user-yardages">{{ yardage.PWedge }}</td>
+            <td class="user-yardages">{{ yardage.Nine_Iron }}</td>
+            <td class="user-yardages">{{ yardage.Eight_Iron }}</td>
+            <td class="user-yardages">{{ yardage.Seven_Iron }}</td>
+            <td class="user-yardages">{{ yardage.Six_Iron }}</td>
+            <td class="user-yardages">{{ yardage.Five_Iron }}</td>
+            <td class="user-yardages">{{ yardage.Four_Iron }}</td>
+            <td class="user-yardages">{{ yardage.Three_Iron }}</td>
+            <td class="user-yardages">{{ yardage.Hybrid }}</td>
+            <td class="user-yardages">{{ yardage.Five_Wood }}</td>
+            <td class="user-yardages">{{ yardage.Three_Wood }}</td>
+            <td class="user-yardages">{{ yardage.Driver }}</td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="12">No yardages recorded yet.</td>
+          </tr>
+          {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
